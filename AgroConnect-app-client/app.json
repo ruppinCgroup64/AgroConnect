@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "AgroConnect",
+    "slug": "AgroConnect",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/image/Logo.png",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.agroconnect2024.agroconnect"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/image/Logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.anonymous.Potea"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}

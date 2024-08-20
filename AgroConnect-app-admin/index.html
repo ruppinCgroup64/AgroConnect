@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AgroConnect Admin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Header Start -->
+            <header class="bg-light px-4 py-3 d-flex justify-content-center align-items-center flex-column">
+                <img src="img/logo.png" alt="Logo" style="width: 200px; height: 100px;">
+            </header>
+            <!-- Header End -->
+
+            <!-- Users Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Users</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">Actions</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Date of Birth</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Registration Date</th>
+                                    <th scope="col">Is Admin</th>
+                                    <th scope="col">Profile Pic</th>
+                                    <th scope="col">Is Farmer</th>
+                                    <th scope="col">Longitude</th>
+                                    <th scope="col">Latitude</th>
+                                    <th scope="col">Is Active</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-sales-body">
+                                <!-- Rows will be dynamically inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Users End -->
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            </br>
+                            Distributed By <a class="border-bottom" href="https://themewagon.com"
+                                target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- Update User Modal -->
+    <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateUserModalLabel">Update User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateUserForm">
+                        <input type="hidden" id="updateUserId">
+                        <div class="mb-3">
+                            <label for="updateFirstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="updateFirstName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateLastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="updateLastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="updateEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updatePassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="updatePassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateGender" class="form-label">Gender</label>
+                            <input type="text" class="form-control" id="updateGender" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateDateOfBirth" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="updateDateOfBirth" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updatePhoneNum" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="updatePhoneNum" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateAddress" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="updateAddress" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateRegistrationDate" class="form-label">Registration Date</label>
+                            <input type="date" class="form-control" id="updateRegistrationDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateIsAdmin" class="form-label">Is Admin</label>
+                            <input type="checkbox" class="form-check-input" id="updateIsAdmin">
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateProfilePic" class="form-label">Profile Picture URL</label>
+                            <input type="text" class="form-control" id="updateProfilePic" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateIsFarmer" class="form-label">Is Farmer</label>
+                            <input type="checkbox" class="form-check-input" id="updateIsFarmer">
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateLongitude" class="form-label">Longitude</label>
+                            <input type="text" class="form-control" id="updateLongitude" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateLatitude" class="form-label">Latitude</label>
+                            <input type="text" class="form-control" id="updateLatitude" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Include Bootstrap JS for modal functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- API Javascript -->
+    <script src="api.js"></script>
+
+    <!-- Custom Script to Fetch and Populate Data -->
+    <script>
+        $(document).ready(function () {
+            // Fetch data from the API using the read function from api.js
+            read('api/Consumers/admin')
+                .then(data => {
+                    let tableBody = $('#recent-sales-body');
+                    tableBody.empty(); // Clear any existing rows
+                    data.forEach(consumer => {
+                        let row = `<tr>
+                        <td>
+                            <button class="btn btn-sm btn-primary update-btn" data-id="${consumer.id}">Update</button>
+                            <button class="btn btn-sm btn-danger delete-btn" data-id="${consumer.id}">Delete</button>
+                        </td>
+                        <td>${consumer.firstName}</td>
+                        <td>${consumer.lastName}</td>
+                        <td>${consumer.email}</td>
+                        <td>${consumer.password}</td>
+                        <td>${consumer.gender}</td>
+                        <td>${consumer.dateOfBirth}</td>
+                        <td>${consumer.phoneNum}</td>
+                        <td>${consumer.address}</td>
+                        <td>${consumer.registrationDate}</td>
+                        <td>${consumer.isAdmin}</td>
+                        <td>${consumer.profilePic}</td>
+                        <td>${consumer.isFarmer}</td>
+                        <td>${consumer.longitude}</td>
+                        <td>${consumer.latitude}</td>
+                        <td>${consumer.isActive}</td>
+                    </tr>`;
+                        tableBody.append(row);
+                    });
+
+                    // Add click event listeners for the buttons
+                    $('.update-btn').click(function () {
+                        let userId = $(this).data('id');
+                        // Call the update function
+                        openUpdateModal(userId);
+                    });
+
+                    $('.delete-btn').click(function () {
+                        let userId = $(this).data('id');
+                        // Call the delete function
+                        deleteUser(userId);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+
+        function deleteUser(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                remove(`api/Consumers/${userId}`)
+                    .then(response => {
+                        if (response.status) {
+                            alert("User deleted successfully!");
+                            // Reload the data
+                            location.reload();
+                        } else {
+                            alert("Failed to delete user.");
+                        }
+                    })
+                    .catch(error => console.error('Error deleting user:', error));
+            }
+        }
+
+        function openUpdateModal(userId) {
+            // Fetch user data and populate the form
+            read(`api/Consumers/${userId}`)
+                .then(consumer => {
+                    // Set the value for each input field
+                    $('#updateUserId').val(consumer.id);
+                    $('#updateFirstName').val(consumer.firstName);
+                    $('#updateLastName').val(consumer.lastName);
+                    $('#updateEmail').val(consumer.email);
+                    $('#updatePassword').val(consumer.password);
+                    $('#updateGender').val(consumer.gender);
+
+                    // Set date inputs correctly
+                    $('#updateDateOfBirth').val(formatDateForInput(consumer.dateOfBirth));
+                    $('#updateRegistrationDate').val(formatDateForInput(consumer.registrationDate));
+
+                    // Set checkbox inputs correctly
+                    $('#updateIsAdmin').prop('checked', consumer.isAdmin);
+                    $('#updateIsFarmer').prop('checked', consumer.isFarmer);
+
+                    $('#updatePhoneNum').val(consumer.phoneNum);
+                    $('#updateAddress').val(consumer.address);
+                    $('#updateProfilePic').val(consumer.profilePic);
+                    $('#updateLongitude').val(consumer.longitude);
+                    $('#updateLatitude').val(consumer.latitude);
+
+                    // Show the modal
+                    $('#updateUserModal').modal('show');
+                })
+                .catch(error => console.error('Error fetching user data:', error));
+        }
+
+        function formatDateForInput(dateString) {
+            const parts = dateString.split(' ')[0].split('/');
+            const day = parts[0];
+            const month = parts[1];
+            const year = parts[2];
+            return `${year}-${month}-${day}`;
+        }
+
+        $('#updateUserForm').submit(function (event) {
+            event.preventDefault();
+            let userId = $('#updateUserId').val();
+            let updatedUser = {
+                id: userId,
+                firstName: $('#updateFirstName').val(),
+                lastName: $('#updateLastName').val(),
+                email: $('#updateEmail').val(),
+                password: $('#updatePassword').val(),
+                gender: $('#updateGender').val().trim(),
+                dateOfBirth: $('#updateDateOfBirth').val(),
+                phoneNum: $('#updatePhoneNum').val(),
+                address: $('#updateAddress').val(),
+                registrationDate: $('#updateRegistrationDate').val(),
+                isAdmin: $('#updateIsAdmin').prop('checked'),
+                profilePic: $('#updateProfilePic').val(),
+                isFarmer: $('#updateIsFarmer').prop('checked'),
+                longitude: $('#updateLongitude').val(),
+                latitude: $('#updateLatitude').val(),
+                isActive: $('#updateIsActive').prop('checked')
+            };
+
+            update(`api/Consumers`, updatedUser)
+                .then(response => {
+                    if (response) {
+                        alert("User updated successfully!");
+                        // Reload the data
+                        location.reload();
+                    } else {
+                        alert("Failed to update user.");
+                    }
+                })
+                .catch(error => console.error('Error updating user:', error));
+        });
+    </script>
+
+</body>
+
+</html>
